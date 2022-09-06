@@ -5,6 +5,7 @@
 	--primary-white-color: #ffffff;
 	--back-color: #2f303a;
 	--icon-color: #afb1b8;
+	--animation: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Clean styles */
@@ -154,33 +155,6 @@ body {
 
 .contact-item:not(:last-child) {
 	margin-right: 50px;
-}
-
-/* Modal */
-
-.backdrop {
-	position: fixed;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	background-color: rgba(0, 0, 0, 0.2);
-	opacity: 1;
-}
-
-.backdrop.is-hidden {
-	opacity: 0;
-	pointer-events: none;
-}
-
-.modal {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 528px;
-	height: 581px;
-	background-color: var(--primary-white-color);
 }
 
 /* Hero */
@@ -377,12 +351,12 @@ body {
 	height: 44px;
 	border-radius: 50%;
 	color: var(--icon-color);
-	transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: color 250ms var(--animation), background-color 250ms var(--animation);
 }
 
 .social-icons {
 	fill: currentColor;
-	transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: fill 250ms var(--animation);
 }
 
 .team-social-link:hover,
@@ -407,12 +381,12 @@ body {
 	color: var(--icon-color);
 	border: 1px solid var(--icon-color);
 	border-radius: 4px;
-	transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: color 250ms var(--animation), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-icon {
 	fill: currentColor;
-	transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: fill 250ms var(--animation);
 }
 
 .clients-link-icon:hover,
@@ -478,7 +452,7 @@ body {
 	border-radius: 50%;
 	background-color: rgba(255, 255, 255, 0.1);
 	color: var(--primary-white-color);
-	transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: color 250ms var(--animation), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-social-link:hover,
@@ -516,8 +490,8 @@ body {
 	line-height: 1.6;
 	text-align: center;
 	padding: 6px 22px;
-	transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-		box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: color 250ms var(--animation), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+		box-shadow 250ms var(--animation);
 }
 
 .filter-button:hover,
@@ -550,7 +524,7 @@ body {
 }
 
 .projects-item {
-	transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: box-shadow 250ms var(--animation);
 }
 
 .projects-item:hover {
@@ -587,7 +561,7 @@ body {
 	text-decoration: none;
 	transition-property: color;
 	transition-duration: 250ms;
-	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-timing-function: var(--animation);
 }
 
 .buttons {
@@ -598,4 +572,58 @@ body {
 .link:hover,
 .link:focus {
 	color: var(--accent-color);
+}
+
+/* Modal */
+
+.backdrop {
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.2);
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 500ms var(--animation), visibility 500ms var(--animation);
+}
+
+.backdrop.is-hidden {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+.modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(1);
+	width: 528px;
+	height: 581px;
+	padding-right: 8px;
+	padding-top: 8px;
+	background-color: var(--primary-white-color);
+	transition: transform 500ms var(--animation);
+}
+
+.backdrop.is-hidden .modal {
+	transform: translate(-50%, -50%) scale(0.6);
+}
+
+.close-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: auto;
+	margin-bottom: auto;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	color: rgba(0, 0, 0, 1);
+}
+
+.close-icon {
+	fill: currentColor;
 }
